@@ -3,16 +3,18 @@ Version:        0.7.16
 Release:        1%{?dist}
 Summary:        Build packages and check them for reproducibility
 
-License:        GPL-3+
+License:        GPLv3+
 Source0:        https://salsa.debian.org/reproducible-builds/%{name}/-/archive/%{version}/%{name}-%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-setuptools
 
+Requires:       python%{python3_pkgversion}-rstr
 Requires:       diffoscope
 Requires:       disorderfs
-Requires:       python%{python3_pkgversion}-rstr
+Requires:       faketime
+Requires:       fakeroot
 
 %description
 reprotest builds the same source code twice in different environments, and
