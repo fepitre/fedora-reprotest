@@ -1,6 +1,6 @@
 Name:           reprotest
 Version:        0.7.16
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Build packages and check them for reproducibility
 
 License:        GPLv3+
@@ -15,6 +15,8 @@ Requires:       diffoscope
 Requires:       disorderfs
 Requires:       faketime
 Requires:       fakeroot
+Requires:       glibc-all-langpacks
+Requires:       rpm-build
 
 %description
 reprotest builds the same source code twice in different environments, and
@@ -46,6 +48,9 @@ rm -rf %{name}.egg-info
 %{python3_sitelib}/%{name}-%{version}-py%{python3_version}.egg-info
 
 %changelog
+* Mon Feb 08 2021 Frédéric Pierret (fepitre) <frederic.pierret@qubes-os.org> - 0.7.16-2
+- Update requirements
+
 * Wed Feb 03 2021 Frédéric Pierret (fepitre) <frederic.pierret@qubes-os.org> - 0.7.16-1
 - version 0.7.16
 
