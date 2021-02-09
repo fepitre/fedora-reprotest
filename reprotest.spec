@@ -1,12 +1,15 @@
 Name:           reprotest
 Version:        0.7.16
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Build packages and check them for reproducibility
 URL:            https://salsa.debian.org/reproducible-builds/%{name}
 License:        GPLv3+
-Source0:        https://salsa.debian.org/reproducible-builds/%{name}/-/archive/%{version}/%{name}-%{version}.tar.gz
+Source0:        https://reproducible-builds.org/_lfs/releases/%{name}/%{name}_%{version}.tar.xz
+Source1:        https://reproducible-builds.org/_lfs/releases/%{name}/%{name}_%{version}.tar.xz.asc
+Source2:        https://salsa.debian.org/reproducible-builds/reproducible-website/-/raw/master/reproducible-builds-developers-keys.asc
 BuildArch:      noarch
 
+BuildRequires:  gnupg2
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-setuptools
 
@@ -31,7 +34,8 @@ example schroot, ssh, qemu, and several others.
 reprotest is developed as part of the "reproducible builds" Debian project.
 
 %prep
-%autosetup -n %{name}-%{version}
+%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
+%autosetup -n %{name}
 # Remove bundled egg-info
 rm -rf %{name}.egg-info
 
@@ -48,6 +52,9 @@ rm -rf %{name}.egg-info
 %{python3_sitelib}/%{name}-%{version}-py%{python3_version}.egg-info
 
 %changelog
+* Tue Feb 09 2021 Frédéric Pierret (fepitre) <frederic.pierret@qubes-os.org> - 0.7.16-3
+- Use sources signature verification
+
 * Mon Feb 08 2021 Frédéric Pierret (fepitre) <frederic.pierret@qubes-os.org> - 0.7.16-2
 - Update requirements
 
