@@ -2,7 +2,7 @@ Name:           reprotest
 Version:        0.7.16
 Release:        2%{?dist}
 Summary:        Build packages and check them for reproducibility
-
+URL:            https://salsa.debian.org/reproducible-builds/%{name}
 License:        GPLv3+
 Source0:        https://salsa.debian.org/reproducible-builds/%{name}/-/archive/%{version}/%{name}-%{version}.tar.gz
 BuildArch:      noarch
